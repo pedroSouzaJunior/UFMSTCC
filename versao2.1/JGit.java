@@ -11,9 +11,9 @@ import java.util.Set;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.api.errors.InvalidRemoteException;
+//import org.eclipse.jgit.api.errors.InvalidRemoteException;
 import org.eclipse.jgit.api.errors.NoFilepatternException;
-import org.eclipse.jgit.api.errors.TransportException;
+//import org.eclipse.jgit.api.errors.TransportException;
 import org.eclipse.jgit.errors.NoWorkTreeException;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
@@ -47,7 +47,7 @@ public class JGit {
 	@SuppressWarnings("nls")
 	public JGit() {
 		localPath = "";
-		remotePath = "https://github.com/DanielliUrbieta/TCC/tree/master/teste";
+		remotePath = "ssh://github.com/DanielliUrbieta/TCC/tree/master/teste";
 		myArq = new JFileChooser();
 	}
 
@@ -181,7 +181,7 @@ public class JGit {
 	@SuppressWarnings("nls")
 	public void init() throws IOException {
 
-		setLocalPath("/home/pedro/novoRepositorio");
+		setLocalPath("/home/pedro/Repositorio");
 		setMyRepo(new FileRepository(localPath + "/.git"));
 		this.git = new Git(myRepo);
 		System.out.print(myRepo);
@@ -235,21 +235,11 @@ public class JGit {
 	 * @throws NoWorkTreeException
 	 *
 	 */
+	@SuppressWarnings("nls")
 	public void testRemoveFile() throws NoWorkTreeException, GitAPIException {
-		this.git.rm();
+		this.git.rm().addFilepattern("testFile").call();
 		this.removido = git.status().call().getUntracked();
 	}
 
-	/**
-	 * @throws GitAPIException
-	 * @throws TransportException
-	 * @throws InvalidRemoteException
-	 *
-	 */
-	public void testClone() throws InvalidRemoteException, TransportException,
-			GitAPIException {
-		Git sucess = Git.cloneRepository().setURI(remotePath)
-				.setDirectory(testFile).call();
-		// assertTrue(testFile.exists());
-	}
+
 }

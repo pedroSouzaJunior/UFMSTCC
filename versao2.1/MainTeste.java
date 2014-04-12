@@ -24,11 +24,11 @@ public class MainTeste {
 
 
 		newRepo.init();
-		newRepo.testCreate();
+		// newRepo.testCreate();
 		// newRepo.testAdd();
-		// newRepo.testCommit();
+		newRepo.testCommit();
 		// newRepo.testRemoveFile();
-		newRepo.testClone();
+		// newRepo.testClone();
 
 
 
